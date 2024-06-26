@@ -30,9 +30,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FacultyId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MajorId")
                         .HasColumnType("int");
 
@@ -81,8 +78,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<long>("StudentId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("StudentId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Grade")
                         .HasColumnType("decimal(18,2)");
@@ -135,11 +132,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
-                    b.Property<long>("StudentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("StudentId"));
+                    b.Property<string>("StudentId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -155,6 +149,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

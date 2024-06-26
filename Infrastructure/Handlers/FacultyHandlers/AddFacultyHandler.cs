@@ -1,15 +1,9 @@
 ﻿using Application.Commands.FacultyCommand;
 using Application.DTOs;
-using Application.DTOs.Request;
 using Domain.Entities;
 using Infrastructure.Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Handlers.FacultyHandlers
 {

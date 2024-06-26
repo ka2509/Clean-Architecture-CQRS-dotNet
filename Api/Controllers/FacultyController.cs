@@ -1,6 +1,5 @@
 ﻿using Application.Commands.FacultyCommand;
-using Application.DTOs.Request;
-using Domain.Entities;
+using Application.DTOs.Request.Faculty;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +15,6 @@ namespace Api.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> AddFaculty([FromBody] FacultyDto facultyDto) => Ok(await _mediator.Send(new AddFacultyCommand { FacultyDto = facultyDto }));
+        public async Task<IActionResult> AddFaculty([FromBody] FacultyDto facultyDto) => Ok(await _mediator.Send(new AddFacultyCommand(facultyDto)));
     }
 }

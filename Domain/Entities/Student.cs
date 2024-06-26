@@ -7,13 +7,13 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Domain.Entities
 {
     public class Student
     {
         [Key]
-        public long StudentId { get; set; }
+        public string StudentId { get; set; }
+        public string Password { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public Gender Gender { get; set; }
         // Many-to-one

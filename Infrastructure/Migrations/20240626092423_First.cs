@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,7 +51,6 @@ namespace Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FacultyId = table.Column<int>(type: "int", nullable: false),
                     MajorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -91,8 +90,8 @@ namespace Infrastructure.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    StudentId = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     ClassId = table.Column<int>(type: "int", nullable: false),
@@ -114,7 +113,7 @@ namespace Infrastructure.Migrations
                 name: "CourseGrades",
                 columns: table => new
                 {
-                    StudentId = table.Column<long>(type: "bigint", nullable: false),
+                    StudentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
                     Grade = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },

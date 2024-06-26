@@ -13,3 +13,4 @@ D:\repo\Solution1\Application\obj\Debug\net8.0\Application.dll
 D:\repo\Solution1\Application\obj\Debug\net8.0\refint\Application.dll
 D:\repo\Solution1\Application\obj\Debug\net8.0\Application.pdb
 D:\repo\Solution1\Application\obj\Debug\net8.0\ref\Application.dll
+D:\repo\Solution1\Application\obj\Debug\net8.0\Application.sourcelink.json

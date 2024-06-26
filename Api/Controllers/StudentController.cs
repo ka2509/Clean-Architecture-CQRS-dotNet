@@ -1,5 +1,6 @@
 ﻿using Application.Queries.StudentQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -14,6 +15,7 @@ namespace Api.Controllers
             _mediator = mediator;
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllStudent() => Ok(await _mediator.Send(new GetAllStudentQuery()));
     }
 }
