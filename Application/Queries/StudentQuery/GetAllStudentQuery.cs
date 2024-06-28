@@ -4,5 +4,5 @@ using MediatR;
 
 namespace Application.Queries.StudentQuery
 {
-    public record GetAllStudentQuery : IRequest<List<StudentResponseDto>> { }
+    public record GetAllStudentQuery : IRequest<List<StudentResponseDto>>;
 }
