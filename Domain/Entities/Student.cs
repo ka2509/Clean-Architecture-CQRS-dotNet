@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 namespace Domain.Entities
@@ -22,5 +23,6 @@ namespace Domain.Entities
         public DateTime Dob { get; set; }
         public string Address { get; set; } = string.Empty;
         public List<CourseGrade> CourseGrades { get; set; } = new List<CourseGrade>();
+        public List<UserRole> UserRoles { get; set; } = new List<UserRole> { };
     }
 }

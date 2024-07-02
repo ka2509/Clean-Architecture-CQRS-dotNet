@@ -22,7 +22,7 @@ namespace Infrastructure.Handlers.AccountHandlers
                 return new ServiceResponse(false, "Student already had an account!");
             }
             var registerDto = request.RegisterDto;
-            await _context.AddAsync(new Student()
+            var createStudent = new Student()
             {
                 StudentId = registerDto.StudentId,
                 Name = registerDto.Name,
@@ -31,7 +31,13 @@ namespace Infrastructure.Handlers.AccountHandlers
                 Dob = registerDto.Dob,
                 Address = registerDto.Address,
                 Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
+            };
+            createStudent.UserRoles.Add(new UserRole()
+            {
+                Student = createStudent,
+                RoleName = "user"
             });
+            await _context.AddAsync(createStudent);
             await _context.SaveChangesAsync();
             return new ServiceResponse(true, "Account created successful!");
         }

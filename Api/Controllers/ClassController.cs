@@ -15,7 +15,7 @@ namespace Api.Controllers
             _mediator = mediator;
         }
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _mediator.Send(new ClassViewQuery()));

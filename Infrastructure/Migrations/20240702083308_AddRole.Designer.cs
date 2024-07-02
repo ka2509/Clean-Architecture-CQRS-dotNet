@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240702083308_AddRole")]
+    partial class AddRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,16 +133,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Majors");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Role", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("Roles");
-                });
-
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
                     b.Property<string>("StudentId")
@@ -166,26 +159,14 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.HasKey("StudentId");
 
                     b.HasIndex("ClassId");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("Domain.Entities.UserRole", b =>
-                {
-                    b.Property<string>("StudentId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("StudentId", "RoleName");
-
-                    b.HasIndex("RoleName");
-
-                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Class", b =>
@@ -251,25 +232,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Class");
                 });
 
-            modelBuilder.Entity("Domain.Entities.UserRole", b =>
-                {
-                    b.HasOne("Domain.Entities.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleName")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Student", "Student")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("Domain.Entities.Class", b =>
                 {
                     b.Navigation("Students");
@@ -292,16 +254,9 @@ namespace Infrastructure.Migrations
                     b.Navigation("Courses");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Role", b =>
-                {
-                    b.Navigation("UserRoles");
-                });
-
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
                     b.Navigation("CourseGrades");
-
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

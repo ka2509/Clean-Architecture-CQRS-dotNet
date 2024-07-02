@@ -1,4 +1,5 @@
 ﻿using Application.Queries.StudentQuery;
+using Infrastructure.Data;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

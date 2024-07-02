@@ -19,7 +19,7 @@ namespace Infrastructure.Handlers.AccountHandlers
 
         public async Task<AccountResult> Handle(LoginAccountQuery request, CancellationToken cancellationToken)
         {
-            var check = await _context.Students.FirstOrDefaultAsync(s => s.StudentId == request.loginDto.StudentId);
+            var check = await _context.Students.Include(s => s.UserRoles).FirstOrDefaultAsync(s => s.StudentId == request.loginDto.StudentId);
             if (check == null) return new AccountResult(false, "Invalid StudenId!");
             var checkPass = BCrypt.Net.BCrypt.Verify(request.loginDto.Password, check.Password);
             if(checkPass)
