@@ -16,9 +16,6 @@ namespace Api.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "user")]
-        public async Task<IActionResult> GetAll()
-        {
-            return Ok(await _mediator.Send(new ClassViewQuery()));
-        }
+        public async Task<IActionResult> GetAll() => Ok(await _mediator.Send(new ClassViewQuery()));
     }
 }

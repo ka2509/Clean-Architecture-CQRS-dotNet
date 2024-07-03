@@ -18,5 +18,9 @@ namespace Api.Controllers
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> GetAllStudent() => Ok(await _mediator.Send(new GetAllStudentQuery()));
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<IActionResult> GetById([FromRoute] string id) => Ok(await _mediator.Send(new GetByIdQuery(id)));
+
     }
 }
